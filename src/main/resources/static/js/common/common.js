@@ -6,3 +6,5 @@ function validate(element) {
         }
     });
 }
+
+// $.validate.addMethod("equalTo")
