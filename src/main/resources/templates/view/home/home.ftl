@@ -34,7 +34,7 @@
 
 <!-- modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
-    <form class="form-horizontal text-center" id="registerForm">
+    <form class="form-horizontal text-center" id="registerForm" action="${request.contextPath}/user/add" method="post">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,9 +44,9 @@
                     <h4 class="modal-title" id="registerModalLabel">注册账户</h4>
                 </div>
                 <div class="modal-body">
-                <@form.text id="registerName" name="registerName" label="用户名" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="用户名"/>
-                <@form.text id="registEmail" name="registEmail" type="email" label="邮箱" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="邮箱"/>
-                <@form.text id="registPass" name="registPass" type="password" label="密码" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="密码"/>
+                <@form.text id="registerName" name="name" label="用户名" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="用户名"/>
+                <@form.text id="registEmail" name="email" type="email" label="邮箱" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="邮箱"/>
+                <@form.text id="registPass" name="password" type="password" label="密码" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="密码"/>
                 <@form.text id="comfirmPass" name="comfirmPass" type="password" label="确认密码" labelCss="control-label col-lg-2 " textCss="col-lg-8" componetCss="input-lg" required="required" placeholder="确认密码" equalTo="#registPass"/>
                 </div>
                 <div class="modal-footer">
@@ -71,9 +71,12 @@
         });
 
         $("#registerUser").click(function () {
-            validate("#registerForm");
-        })
-//        validate("#loginForm");
-    })
+            var validator = validate("#registerForm");
+
+            if (!validator.valid())
+                return;
+        });
+
+    });
 </script>
 </html>
