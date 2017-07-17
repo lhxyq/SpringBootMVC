@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>home</title>
+    <title>登录</title>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/common/common.css">
 </head>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group text-left">
                 <div class="col-sm-offset-2 col-lg-8">
-                    <button type="submit" class="btn btn-info btn-block active btn-lg radius">登录</button>
+                    <button id="login" type="submit" class="btn btn-info btn-block active btn-lg radius">登录</button>
                 </div>
             </div>
             <div class="form-group text-center">
@@ -81,6 +81,12 @@
                 return;
         });
 
+        $("#login").click(function () {
+            var validator = validate("#loginForm");
+
+            if (!validator.valid())
+                return;
+        });
     });
 </script>
 </html>

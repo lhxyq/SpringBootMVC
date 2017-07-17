@@ -32,7 +32,7 @@ public class UserInfoFilter implements Filter{
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetail) {
             String username = ((UserDetail) principal).getUsername();
-            session.setAttribute("username", username);
+            session.setAttribute("myname", username);
         }
 
         filterChain.doFilter(req, res);

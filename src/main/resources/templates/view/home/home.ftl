@@ -1,13 +1,5 @@
-<#import "/templates/template/template.ftl" as form />
+<#import "/templates/master/master.ftl" as layout/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>welcome to system</title>
-</head>
-<body>
-    login success!welcome ${username}
-</body>
+<@layout.layout>
 
-</html>
+</@layout.layout>
