@@ -2,6 +2,7 @@ package com.lh.web.service.impl;
 
 import com.lh.web.dao.UserDao;
 import com.lh.web.domain.User;
+import com.lh.web.mapper.UserMapper;
 import com.lh.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -19,6 +20,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Autowired
+    private UserMapper userMapper;
+    @Autowired
     private Md5PasswordEncoder passwordEncoder;
 
     @Override
@@ -30,6 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByName(String name) {
-        return userDao.findByName(name);
+//        return userDao.findByName(name);
+        return userMapper.findByName(name);
     }
 }

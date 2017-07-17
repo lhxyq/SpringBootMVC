@@ -14,15 +14,16 @@
         <div class="col-lg-12">
             <img class="img-circle" src="/static/image/user.jpg" alt="用户头像"/>
             <span class="h3 text-center">欢迎${myname} 签名：这家伙很懒,还木有签名~</span>
+            <span class="text-right col-lg-offset-5"><button class="btn btn-primary btn-link"><a href="${request.contextPath}/logout">安全退出</a></button></span>
         </div>
     </div>
 
     <div class="row" style="height: 440px">
-        <div class="col-lg-offset-0 col-lg-2">
+        <div class="col-lg-offset-0 col-lg-2 text-center">
             <ul class="list-unstyled">
                 <br/>
                 <li><a href="${request.contexPath}/user/userInfo/${myname}" class="h3">基本信息 </a></li>
-                <br/>
+                <hr/>
                 <li><a href="#" class="h3">用户管理</a></li>
             </ul>
         </div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.web.mapper.UserMapper">
+    <resultMap id="user_mapper" type="user">
+        <id property="id" column="id" jdbcType="VARCHAR"></id>
+        <result property="name" column="name" jdbcType="VARCHAR"></result>
+        <result property="password" column="password" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+    </resultMap>
+    <select id="findByName" resultMap="user_mapper">
+        select * from user where name = #{name}
+    </select>
+</mapper>
