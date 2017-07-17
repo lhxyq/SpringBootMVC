@@ -4,6 +4,7 @@ import com.lh.web.dao.UserDao;
 import com.lh.web.domain.User;
 import com.lh.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,10 +18,18 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private Md5PasswordEncoder passwordEncoder;
 
     @Override
     public User add(User create) {
         create.setId(UUID.randomUUID().toString());
+        create.setPassword(passwordEncoder.encodePassword(create.getPassword(), ""));
         return userDao.save(create);
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userDao.findByName(name);
     }
 }

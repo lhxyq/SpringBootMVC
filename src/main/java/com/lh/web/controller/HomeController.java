@@ -2,6 +2,7 @@ package com.lh.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping
-    public String index() {
-        return "home/home";
+    @GetMapping("/error")
+    public String error() {
+        return "home/error";
     }
 
+    @GetMapping
+    public String home() {
+        return "home/home";
+    }
 }
