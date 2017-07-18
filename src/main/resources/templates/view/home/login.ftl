@@ -10,7 +10,7 @@
 </head>
 <body>
 <form class="form-horizontal text-center" id="loginForm" action="/login" method="post">
-    <div class="login panel panel-primary radius">
+    <div class="login panel panel-info radius">
         <div class="panel-heading radius">
             <span class="panel-title"><h3>用户登录</h3></span>
         </div>

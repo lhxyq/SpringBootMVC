@@ -2,7 +2,7 @@
     color: red;
 }
 
-.panel-info {
+.font-color {
     color: gray;
 }
 
@@ -16,6 +16,14 @@
 
 .btn.radius {
     border-radius: 30px;
+}
+
+.navbar.radius {
+    border-radius: 0px;
+}
+
+a.navbar-brand {
+    width: 70px;
 }
 
 .login.panel {
