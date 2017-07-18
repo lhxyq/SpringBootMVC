@@ -4,6 +4,8 @@ import com.lh.web.dao.UserDao;
 import com.lh.web.domain.User;
 import com.lh.web.mapper.UserMapper;
 import com.lh.web.service.UserService;
+import com.lh.web.util.common.ResultEnum;
+import com.lh.web.util.common.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,16 @@ public class UserServiceImpl implements UserService {
     public User findByName(String name) {
 //        return userDao.findByName(name);
         return userMapper.findByName(name);
+    }
+
+    @Override
+    public User create(User create) throws Exception{
+        if (3 > create.getPassword().length())
+            throw new WebException(ResultEnum.TOO_LITTLE);
+        if (5 > create.getPassword().length())
+            throw new WebException(ResultEnum.OSO_LITTLE);
+
+        create.setId(UUID.randomUUID().toString());
+        return create;
     }
 }

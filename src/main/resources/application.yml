@@ -36,4 +36,7 @@ spring:
         classic_compatible: true
     order: 1
 
+logging:
+  filelogs: logs/logging.log
+
 

@@ -9,4 +9,6 @@ public interface UserService {
     User add(User create);
 
     User findByName(String name);
+
+    User create(User create) throws Exception;
 }
