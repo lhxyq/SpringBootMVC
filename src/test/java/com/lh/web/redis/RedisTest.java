@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,7 +21,9 @@ public class RedisTest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
-    private RedisTemplate<String, User> userRedisTemplate;
+    private RedisTemplate<String, Object> userRedisTemplate;
+    @Autowired
+    private CacheManager cacheManager;
 
     @Test
     public void addStringKey() {
@@ -44,9 +48,16 @@ public class RedisTest {
                 .build();
 
         userRedisTemplate.opsForValue().set(user.getId(), user);
-        Assert.assertEquals("001", userRedisTemplate.opsForValue().get("001").getId());
+        Assert.assertEquals("001", ((User)userRedisTemplate.opsForValue().get("001")).getId());
 
         userRedisTemplate.opsForValue().set(user2.getId(), user2);
-        Assert.assertEquals("002", userRedisTemplate.opsForValue().get("002").getId());
+        Assert.assertEquals("002", ((User)userRedisTemplate.opsForValue().get("002")).getId());
+    }
+
+    @Test
+    public void cacheManagerType() {
+        Cache cache = cacheManager.getCache("users~keys");
+        User user = cache.get("xyq", User.class);
+        Assert.assertEquals("xyq", user.getName());
     }
 }

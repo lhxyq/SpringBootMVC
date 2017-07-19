@@ -49,6 +49,14 @@ spring:
       max-idle: 8
       min-idle: 0
     timeout: 500
+#  cache:
+#    type: redis
+#  cache:
+#    type: ehcache
+#    ehcache:
+#      config: classpath:/ehcache.xml
+
 #logging:
 #  file: weblog.log
+
 

@@ -7,6 +7,9 @@ import com.lh.web.service.UserService;
 import com.lh.web.util.common.ResultEnum;
 import com.lh.web.util.common.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private Md5PasswordEncoder passwordEncoder;
 
+    @CachePut(value="user", key = "#create.name")
     @Override
     public User add(User create) {
         create.setId(UUID.randomUUID().toString());
@@ -33,10 +37,11 @@ public class UserServiceImpl implements UserService {
         return userDao.save(create);
     }
 
+    @Cacheable(value="user", key="#name")
     @Override
     public User findByName(String name) {
-//        return userDao.findByName(name);
-        return userMapper.findByName(name);
+        return userDao.findByName(name);
+//        return userMapper.findByName(name);
     }
 
     @Override
