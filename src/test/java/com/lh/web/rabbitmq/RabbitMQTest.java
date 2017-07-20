@@ -1,6 +1,7 @@
 package com.lh.web.rabbitmq;
 
 import com.lh.web.RabbitMQConfig.Sender;
+import com.lh.web.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,12 @@ public class RabbitMQTest {
 
     @Test
     public void sendMessage() {
-        sender.send("hello word", "user.add");
+        User user = User.builder()
+                .id("001")
+                .name("jedis")
+                .password("123")
+                .email("jedis@qq.com")
+                .build();
+        sender.send(user, "user.add");
     }
 }
